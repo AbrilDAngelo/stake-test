@@ -39,6 +39,8 @@ export class InvestPage {
       initialBreakpoint: 0.45,
       handle: true,
       mode: 'ios',
+      backdropDismiss: true,
+      showBackdrop: true,
       presentingElement: presenting ?? undefined,
     });
 
@@ -51,7 +53,7 @@ export class InvestPage {
         duration: 1600,
         color: 'success',
         position: 'top',
-        mode: 'ios'
+        mode: 'ios',
       });
       t.present();
     }

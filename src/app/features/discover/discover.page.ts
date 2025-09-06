@@ -1,7 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit, inject, signal, computed, ViewChild } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  inject,
+  signal,
+  computed,
+  ViewChild,
+} from '@angular/core';
 import { InstrumentVM } from '@core/services/models';
-import { IonicModule, ModalController, ToastController, IonSearchbar } from '@ionic/angular';
+import {
+  IonicModule,
+  ModalController,
+  ToastController,
+  IonSearchbar,
+} from '@ionic/angular';
 import { StCardComponent } from '@shared/ui/st-card/st-card.component';
 import { StInstrumentComponent } from '@shared/ui/st-instrument/st-instrument.component';
 import { DataComposerService } from '@core/services/data-composer';
@@ -53,6 +65,8 @@ export class DiscoverPage implements OnInit {
       initialBreakpoint: 0.45,
       handle: true,
       mode: 'ios',
+      backdropDismiss: true,
+      showBackdrop: true,
       presentingElement: presenting ?? undefined,
     });
 

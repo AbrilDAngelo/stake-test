@@ -1,13 +1,19 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ModalController, IonicModule } from '@ionic/angular';
 import { InstrumentVM } from '@core/services/models';
+import { SwipeButtonComponent } from '@shared/ui/st-swipe-button/st-swipe-button.component';
 
 @Component({
   selector: 'st-order-sheet',
   standalone: true,
-  imports: [IonicModule, CurrencyPipe, ReactiveFormsModule],
+  imports: [
+    IonicModule,
+    CurrencyPipe,
+    ReactiveFormsModule,
+    SwipeButtonComponent,
+  ],
   templateUrl: './st-order-sheet.component.html',
   styleUrls: ['./st-order-sheet.component.scss'],
 })
@@ -17,7 +23,11 @@ export class StOrderSheetComponent {
 
   @Input({ required: true }) vm!: InstrumentVM;
 
-  form = this.fb.group({ type: 'Market', amount: null, shares: null });
+  form = this.fb.group({
+    type: ['Market', { nonNullable: true }],
+    amount: [null, { nonNullable: true, validators: [Validators.required] }],
+    shares: [null, { nonNullable: true, validators: [Validators.required] }],
+  });
 
   submit() {
     const { shares, amount } = this.form.value;

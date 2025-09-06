@@ -1,3 +1,19 @@
-<div class="track">
-  <!-- TODO: gesture thumb + progress -->
+<div
+  class="swipe-container"
+  [class.disabled]="disabled"
+  #container
+  (mouseup)="onDragEnd(container)"
+  (touchend)="onDragEnd(container)"
+>
+  <div
+    class="swipe-handle"
+    [style.transform]="'translateX(' + currentX + 'px)'"
+    (mousedown)="onDragStart($event)"
+    (mousemove)="onDragMove($event)"
+    (touchstart)="onDragStart($event)"
+    (touchmove)="onDragMove($event)"
+  >
+    <img class="swipe-btn-img" src="assets/icons/icn-btn-swipe.png" alt=">>>" />
+  </div>
+  <span class="swipe-label">Swipe to buy</span>
 </div>

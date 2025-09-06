@@ -20,9 +20,8 @@
       <ion-input type="number" formControlName="shares"></ion-input>
     </ion-item>
   </ion-list>
-
-  <!-- placeholder until swipe button is added -->
-  <ion-button expand="block" shape="round" color="dark" (click)="submit()"
-    >Swipe to buy</ion-button
-  >
+  <st-swipe-button
+    (completed)="submit()"
+    [disabled]="form.invalid"
+  ></st-swipe-button>
 </section>

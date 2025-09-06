@@ -1,0 +1,15 @@
+@mixin text-style($size, $lh: var(--lh-normal), $weight: 400) {
+  font-family: var(--font-sans);
+  font-size: var(--fs-#{$size});
+  line-height: #{$lh};
+  font-weight: $weight;
+  color: var(--color-text);
+}
+
+@mixin card($padding: var(--space-6), $radius: var(--radius-md)) {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: #{$radius};
+  box-shadow: var(--shadow-card);
+  padding: #{$padding};
+}

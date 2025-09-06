@@ -1,0 +1,4 @@
+<article class="card" [ngClass]="variant">
+  <header *ngIf="hasHeader"><ng-content select="[slot=header]"></ng-content></header>
+  <ng-content></ng-content>
+</article>

@@ -1,0 +1,6 @@
+@import '../../../styles/_mixins';
+
+.card { @include card(); }
+.card.mini { padding: var(--space-4); }
+.card.tile { padding: var(--space-3); border-radius: var(--radius-sm); }
+header { margin-bottom: var(--space-4); }

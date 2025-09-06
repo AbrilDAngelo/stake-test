@@ -19,12 +19,18 @@
     "target": "es2022",
     "module": "es2020",
     "lib": ["es2018", "dom"],
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "paths": {
+      "@features/*": ["src/app/features/*"],
+      "@layout/*": ["src/app/layout/*"],
+      "@shared/*": ["src/app/shared/*"],
+      "@env/*": ["src/app/environments/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
 }

@@ -35,3 +35,14 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+@import 'styles/_tokens';
+@import 'styles/_mixins';
+
+html, body, ion-app, ion-content { height: 100%; }
+body { background: var(--color-surface); color: var(--color-text); }
+
+.h1 { @include text-style(3xl, var(--lh-tight), 700); }
+.h2 { @include text-style(2xl, var(--lh-tight), 700); }
+.body { @include text-style(md); }
+.caption { @include text-style(xs); color: var(--color-text-muted); }
+.page-pad { padding: 16px; }

@@ -1,0 +1,15 @@
+<ion-app mode="ios">
+  <ion-tabs>
+    <ion-router-outlet></ion-router-outlet>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="invest" [routerLink]="['/invest']">
+        <ion-icon name="home-outline" />
+        <ion-label>Invest</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="discover" [routerLink]="['/discover']">
+        <ion-icon name="compass-outline" />
+        <ion-label>Discover</ion-label>
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+</ion-app>

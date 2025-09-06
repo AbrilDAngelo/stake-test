@@ -1,89 +1,104 @@
-@use 'mixins' as m;
+@use "mixins" as m;
 
 /* Headings */
 .h1 {
-    @include m.text-var('h1');
+  @include m.text-var("h1");
 }
 
 .h2 {
-    @include m.text-var('h2');
+  @include m.text-var("h2");
 }
 
 .h3 {
-    @include m.text-var('h3');
+  @include m.text-var("h3");
 }
 
 /* Bodies */
 .text-b2 {
-    @include m.text(var(--b2-size), var(--b2-lh), var(--b2-w), var(--b2-track));
+  @include m.text(var(--b2-size), var(--b2-lh), var(--b2-w), var(--b2-track));
 }
 
 .text-b3 {
-    @include m.text(var(--b3-size), var(--b3-lh), var(--b3-w), var(--b3-track));
-    color: var(--color-text-muted);
+  @include m.text(var(--b3-size), var(--b3-lh), var(--b3-w), var(--b3-track));
+  color: var(--color-text-muted);
 }
 
 .text-b4 {
-    @include m.text(var(--b4-size), var(--b4-lh), var(--b4-w), var(--b4-track));
-    color: var(--color-text-muted);
+  @include m.text(var(--b4-size), var(--b4-lh), var(--b4-w), var(--b4-track));
+  color: var(--color-text-muted);
 }
 
 .text-b5 {
-    @include m.text(var(--b5-size), var(--b5-lh), var(--b5-w), var(--b5-track));
-    text-align: right;
+  @include m.text(var(--b5-size), var(--b5-lh), var(--b5-w), var(--b5-track));
+  text-align: right;
 }
 
 /* Card specifics */
 .card-value-lg {
-    font-size: var(--card-value-lg-size);
-    font-weight: var(--card-value-lg-w);
-    line-height: 130%;
+  font-size: var(--card-value-lg-size);
+  font-weight: var(--card-value-lg-w);
+  line-height: 130%;
 }
 
 .card-value-md {
-    font-size: var(--card-value-md-size);
-    font-weight: var(--card-value-md-w);
-    line-height: 130%;
+  font-size: var(--card-value-md-size);
+  font-weight: var(--card-value-md-w);
+  line-height: 130%;
 }
 
 .card-name-md {
-    font-size: var(--card-name-md-size);
-    font-weight: var(--card-name-md-w);
-    line-height: 130%;
+  font-size: var(--card-name-md-size);
+  font-weight: var(--card-name-md-w);
+  line-height: 130%;
 }
 
 .card-sub {
-    font-size: var(--card-sub-size);
-    font-weight: var(--card-sub-w);
-    line-height: 130%;
-    color: var(--card-sub-color);
+  font-size: var(--card-sub-size);
+  font-weight: var(--card-sub-w);
+  line-height: 130%;
+  color: var(--card-sub-color);
 }
 
 /* Labels & links */
 .label-l3 {
-    @include m.text-var('l3');
+  @include m.text-var("l3");
 }
 
 .label-l4-active {
-    @include m.text(var(--l4-active-size), 130%, var(--l4-active-w), var(--l4-track));
+  @include m.text(
+    var(--l4-active-size),
+    130%,
+    var(--l4-active-w),
+    var(--l4-track)
+  );
 }
 
 .label-l4-inactive {
-    @include m.text(var(--l4-inactive-size), 130%, var(--l4-inactive-w), var(--l4-track));
-    color: var(--color-text-muted);
+  @include m.text(
+    var(--l4-inactive-size),
+    130%,
+    var(--l4-inactive-w),
+    var(--l4-track)
+  );
+  color: var(--color-text-muted);
 }
 
 .label-l5 {
-    @include m.text-var('l5');
-    color: var(--color-on-positive);
+  @include m.text-var("l5");
+  color: var(--color-on-positive);
 }
 
 .link-lk1 {
-    @include m.text-var('lk1');
-    color: #fff;
+  @include m.text-var("lk1");
+  color: #fff;
 }
 
 /* Tag pill (type) */
 .tag-type {
-    @include m.text(var(--tag-size), var(--tag-lh), var(--tag-w), var(--tag-track));
+  @include m.text(
+    var(--tag-size),
+    var(--tag-lh),
+    var(--tag-w),
+    var(--tag-track)
+  );
 }

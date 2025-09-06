@@ -1,6 +1,26 @@
-@import '../../../styles/_mixins';
+@use '../../../../styles/mixins' as m;
 
-.card { @include card(); }
-.card.mini { padding: var(--space-4); }
-.card.tile { padding: var(--space-3); border-radius: var(--radius-sm); }
-header { margin-bottom: var(--space-4); }
+:host {
+    display: block
+}
+
+.card {
+    @include m.card();
+}
+
+.card.mini {
+    padding: var(--space-4);
+}
+
+.card.tile {
+    padding: var(--space-3);
+    border-radius: var(--radius-sm);
+}
+
+header {
+    margin-bottom: var(--space-4);
+}
+
+footer {
+    margin-top: var(--space-4);
+}

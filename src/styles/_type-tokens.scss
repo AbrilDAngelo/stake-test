@@ -1,29 +1,69 @@
 :root {
   /* Display / headings (from Figma) */
-  --h1-size: 28px; --h1-lh: 100%; --h1-w: 800; --h1-track: .5px;    /* Total equity */
-  --h2-size: 22px; --h2-lh: 100%; --h2-w: 800; --h2-track: .5px;    /* Screen title */
-  --h3-size: 18px; --h3-lh: 120%; --h3-w: 800; --h3-track: .25px;   /* Section title */
+  --h1-size: 28px;
+  --h1-lh: 100%;
+  --h1-w: 800;
+  --h1-track: 0.5px;
+  --h2-size: 22px;
+  --h2-lh: 100%;
+  --h2-w: 800;
+  --h2-track: 0.5px;
+  --h3-size: 18px;
+  --h3-lh: 120%;
+  --h3-w: 800;
+  --h3-track: 0.25px;
 
   /* Body styles */
-  --b2-size: 14px; --b2-lh: 130%; --b2-w: 500; --b2-track: .25px;   /* Stock name (list) */
-  --b3-size: 12px; --b3-lh: 130%; --b3-w: 500; --b3-track: .25px;   /* Shares secondary */
-  --b4-size: 10px; --b4-lh: 130%; --b4-w: 500; --b4-track: .25px;   /* tiny grey (you showed) */
-  --b5-size: 13px; --b5-lh: 130%; --b5-w: 500; --b5-track: .25px;   /* Price value (right) */
+  --b2-size: 14px;
+  --b2-lh: 130%;
+  --b2-w: 500;
+  --b2-track: 0.25px;
+  --b3-size: 12px;
+  --b3-lh: 130%;
+  --b3-w: 500;
+  --b3-track: 0.25px;
+  --b4-size: 10px;
+  --b4-lh: 130%;
+  --b4-w: 500;
+  --b4-track: 0.25px;
+  --b5-size: 13px;
+  --b5-lh: 130%;
+  --b5-w: 500;
+  --b5-track: 0.25px;
 
   /* Card-specific body you shared */
-  --card-value-lg-size: 18px; --card-value-lg-w: 800;                /* big value on large card */
-  --card-value-md-size: 16px; --card-value-md-w: 800;                /* medium value on tile */
-  --card-name-md-size: 14px; --card-name-md-w: 800;                  /* medium card stock name */
-  --card-sub-size: 14px;  --card-sub-w: 500;                         /* “FIG • Figma Inc” */
-  --card-sub-color: #7E7E7E;
+  --card-value-lg-size: 18px;
+  --card-value-lg-w: 800;
+  --card-value-md-size: 16px;
+  --card-value-md-w: 800;
+  --card-name-md-size: 14px;
+  --card-name-md-w: 800;
+  --card-sub-size: 14px;
+  --card-sub-w: 500;
+  --card-sub-color: #7e7e7e;
 
   /* Labels / badges / links */
-  --l3-size: 12px; --l3-lh: 130%; --l3-w: 800; --l3-track: .25px;   /* “Total equity” label */
-  --l4-active-size: 10px; --l4-active-w: 800; --l4-track: .25px;    /* Active tab label */
-  --l4-inactive-size: 10px; --l4-inactive-w: 700;                    /* Inactive tab label */
-  --l5-size: 13px; --l5-lh: 130%; --l5-w: 700; --l5-track: 0px;      /* Change % pill */
-  --lk1-size: 16px; --lk1-lh: 130%; --lk1-w: 800; --lk1-track: .25px;/* “Swipe to buy” */
+  --l3-size: 12px;
+  --l3-lh: 130%;
+  --l3-w: 800;
+  --l3-track: 0.25px;
+  --l4-active-size: 10px;
+  --l4-active-w: 800;
+  --l4-track: 0.25px;
+  --l4-inactive-size: 10px;
+  --l4-inactive-w: 700;
+  --l5-size: 13px;
+  --l5-lh: 130%;
+  --l5-w: 700;
+  --l5-track: 0px;
+  --lk1-size: 16px;
+  --lk1-lh: 130%;
+  --lk1-w: 800;
+  --lk1-track: 0.25px;
 
   /* Tags (type pill) */
-  --tag-size: 10px; --tag-lh: 130%; --tag-w: 800; --tag-track: .25px;
+  --tag-size: 10px;
+  --tag-lh: 130%;
+  --tag-w: 800;
+  --tag-track: 0.25px;
 }

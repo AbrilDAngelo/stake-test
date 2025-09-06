@@ -1,10 +1,29 @@
-<ion-header translucent>
-  <ion-toolbar>
-    <ion-title>Dashboard</ion-title>
-  </ion-toolbar>
-</ion-header>
 <ion-content fullscreen>
   <section class="page-pad">
-    <!-- TODO: total equity, holdings list, trending slides -->
+    <div class="h2">Dashboard</div>
+    <div class="label-l3">Total equity</div>
+    <div class="h1">$8,036</div>
+
+    <div class="h3" style="margin-top: 16px">Holdings</div>
+    <ion-list lines="none">
+      @for (i of holdings(); track i.symbol) {
+      <st-instrument
+        [vm]="i"
+        variant="row"
+        (buy)="openOrder(i)"
+      ></st-instrument>
+      }
+    </ion-list>
+
+    <div class="h3">Trending stocks</div>
+    <div class="snap-row">
+      @for (t of trending(); track t.symbol) {
+      <st-instrument
+        [vm]="t"
+        variant="tile"
+        (buy)="openOrder(t)"
+      ></st-instrument>
+      }
+    </div>
   </section>
 </ion-content>

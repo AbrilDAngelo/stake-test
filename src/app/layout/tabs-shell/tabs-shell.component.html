@@ -1,15 +1,14 @@
-<ion-app mode="ios">
-  <ion-tabs>
-    <ion-router-outlet></ion-router-outlet>
-    <ion-tab-bar slot="bottom">
-      <ion-tab-button tab="invest" [routerLink]="['/invest']">
-        <ion-icon name="home-outline" />
-        <ion-label>Invest</ion-label>
-      </ion-tab-button>
-      <ion-tab-button tab="discover" [routerLink]="['/discover']">
-        <ion-icon name="compass-outline" />
-        <ion-label>Discover</ion-label>
-      </ion-tab-button>
-    </ion-tab-bar>
-  </ion-tabs>
-</ion-app>
+<ion-router-outlet id="main"></ion-router-outlet>
+<ion-tabs mode="ios">
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="invest" [routerLink]="['/invest']" [routerDirection]="'root'">
+      <span class="tab-icon" style="--src: url('assets/icons/icn-invest.svg')"></span>
+      <ion-label>Invest</ion-label>
+    </ion-tab-button>
+
+    <ion-tab-button tab="discover" [routerLink]="['/discover']" [routerDirection]="'root'">
+      <span class="tab-icon" style="--src: url('assets/icons/icn-discover.svg')"></span>
+      <ion-label>Discover</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>

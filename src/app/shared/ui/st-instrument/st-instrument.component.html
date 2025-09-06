@@ -1,3 +1,40 @@
-<div class="row" [class.tile]="variant==='tile'">
-  <!-- TODO: logo, name/symbol, price, change, buy button -->
+@switch (variant) { @case ('row') {
+<div class="row" (click)="buy.emit(vm)">
+  <img
+    class="logo"
+    [src]="vm.logoUrl"
+    alt="Logo"
+    [title]="vm.name || vm.symbol"
+    loading="lazy"
+  />
+  <div class="meta">
+    <div class="name text-b2">{{ vm.symbol }}</div>
+    <div class="shares text-b3">{{ vm.name }}</div>
+  </div>
+  <div class="spacer"></div>
+  <div class="price text-b5">
+    {{ vm.last | currency : vm.currency ?? "USD" : "symbol" : "1.2-2" }}
+  </div>
+  <span class="badge-change" [class.negative]="vm.dayChangePct < 0">
+    {{ vm.dayChangePct | percent : "1.0-2" }}
+  </span>
 </div>
+} @default {
+<div class="tile" (click)="buy.emit(vm)">
+  <div class="tile-top">
+    <img
+      class="logo"
+      [src]="vm.logoUrl"
+      alt="Symbol"
+      [attr.aria-label]="vm.name || vm.symbol"
+      loading="lazy"
+    />
+    <st-type-chip [type]="vm.type"></st-type-chip>
+  </div>
+  <div class="card-name-md">{{ vm.symbol }}</div>
+  <div class="card-sub">{{ vm.name }}</div>
+  <div class="card-value-md">
+    {{ vm.last | currency : vm.currency ?? "USD" : "symbol" : "1.2-2" }}
+  </div>
+</div>
+} }

@@ -1,0 +1,31 @@
+.invest .mt-8 {
+  margin-top: 8px;
+}
+.invest .mt-16 {
+  margin-top: 16px;
+}
+
+.holdings-head {
+  display: grid;
+  grid-template-columns: 1fr 90px 92px; /* name | price | change */
+  align-items: center;
+  margin: 8px 0 4px;
+  color: var(--color-text-muted);
+}
+
+.holdings-list {
+  padding-top: 4px;
+}
+
+.snap-row {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 200px;
+  gap: 12px;
+  overflow-x: auto;
+  padding-block: 4px;
+  scroll-snap-type: x mandatory;
+}
+.snap-row > * {
+  scroll-snap-align: start;
+}

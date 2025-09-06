@@ -1,10 +1,24 @@
-<ion-header translucent>
-  <ion-toolbar>
-    <ion-title>Discover</ion-title>
-  </ion-toolbar>
-</ion-header>
 <ion-content fullscreen>
   <section class="page-pad">
-    <!-- TODO: search, list, most traded card -->
+    <ion-searchbar
+      ngSkipHydration
+      class="st-search"
+      placeholder="Search"
+      mode="ios"
+      (ionInput)="q.set($event.detail.value || '')"
+    ></ion-searchbar>
+
+    <ion-list lines="none" style="margin-top: 12px">
+      @for (i of filtered; track i.symbol) {
+      <st-instrument [vm]="i" variant="row"></st-instrument>
+      }
+    </ion-list>
+
+    @if (!q()) {
+    <st-card [hasHeader]="true" style="margin-top: 16px">
+      <div slot="header" class="h3">Most traded of all time</div>
+      <st-instrument [vm]="filtered[0]" variant="tile"></st-instrument>
+    </st-card>
+    }
   </section>
 </ion-content>

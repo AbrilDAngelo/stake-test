@@ -21,9 +21,11 @@
     "lib": ["es2018", "dom"],
     "useDefineForClassFields": false,
     "paths": {
+      "@core/*": ["src/app/core/*"],
       "@features/*": ["src/app/features/*"],
       "@layout/*": ["src/app/layout/*"],
       "@shared/*": ["src/app/shared/*"],
+      "@styles/*": ["src/styles/*"],
       "@env/*": ["src/app/environments/*"]
     }
   },

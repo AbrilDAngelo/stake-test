@@ -63,7 +63,6 @@ This simplified layout: most text styles were applied via predefined classes.
 
 #### Toasts
 - Show confirmation messages (“X successfully purchased”).
-- Styled with custom opacity.
 
 ### 🔹 Buy button
 - Implemented a swipe button using the following reference: [Ionic slide button article on Medium](https://jsantacl.medium.com/ionic-slide-button-component-part-1-e61711648492)
@@ -79,7 +78,7 @@ This simplified layout: most text styles were applied via predefined classes.
 - 🔸 **Testing**: No tests included; Jest would be the natural choice for unit tests.
 - 🔸 **Spacing**: Some paddings/margins are hardcoded. Ideally, all layout spacing should reference tokens.
 - 🔸 **Accessibility**: ARIA attributes and keyboard navigation need improvements.
-- 🔸 **Styling consistency**: Toast opacity and some colors are hardcoded; should be fully tokenized.
+- 🔸 **Styling consistency**: Some colors are hardcoded; should be fully tokenized. The toast should have the right opacity. The cards should follow the max-width defined on Figma. I couldn't download the exact font and went for a similar one that I found on Google Fonts (Inter).
 
 ---
 
@@ -97,4 +96,5 @@ npm install
 ```bash
 ionic serve
 ```
+
 

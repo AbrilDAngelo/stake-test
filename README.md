@@ -66,8 +66,7 @@ This simplified layout: most text styles were applied via predefined classes.
 - Styled with custom opacity.
 
 ### 🔹 Buy button
-- Implemented a fake swipe button using **ion-toggle**, styled to mimic slide-to-confirm behavior.
-- Reference: [Ionic slide button article on Medium](https://jsantacl.medium.com/ionic-slide-button-component-part-1-e61711648492)
+- Implemented a swipe button using the following reference: [Ionic slide button article on Medium](https://jsantacl.medium.com/ionic-slide-button-component-part-1-e61711648492)
 
 ---
 
@@ -98,3 +97,4 @@ npm install
 ```bash
 ionic serve
 ```
+

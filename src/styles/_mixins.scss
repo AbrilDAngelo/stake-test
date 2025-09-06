@@ -1,15 +1,24 @@
-@mixin text-style($size, $lh: var(--lh-normal), $weight: 400) {
+@use 'type-tokens' as *;
+
+@mixin text($size, $lh, $weight, $track: 0) {
   font-family: var(--font-sans);
-  font-size: var(--fs-#{$size});
-  line-height: #{$lh};
-  font-weight: $weight;
+  font-size: $size; line-height: $lh; font-weight: $weight; letter-spacing: $track;
   color: var(--color-text);
 }
 
-@mixin card($padding: var(--space-6), $radius: var(--radius-md)) {
+@mixin text-var($prefix) {
+  @include text(var(--#{$prefix}-size), var(--#{$prefix}-lh), var(--#{$prefix}-w), var(--#{$prefix}-track));
+}
+
+@mixin card($p: var(--space-6), $radius: var(--radius-md)) {
   background: var(--color-bg);
   border: 1px solid var(--color-border);
-  border-radius: #{$radius};
+  border-radius: $radius;
   box-shadow: var(--shadow-card);
-  padding: #{$padding};
+  padding: $p;
+}
+
+@mixin chip {
+  display:inline-flex; align-items:center; justify-content:center;
+  border-radius: 999px; padding: 4px 12px; white-space:nowrap; user-select:none;
 }

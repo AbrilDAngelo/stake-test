@@ -1,10 +1,16 @@
-// For information on how to create your own theme, please see:
-// http://ionicframework.com/docs/theming/
 :root {
   --ion-font-family: var(--font-sans);
-  --ion-color-primary: var(--color-brand);
+
+  --ion-color-primary: var(--color-highlight-blue);
+  --ion-color-primary-contrast: #fff;
+
   --ion-color-success: var(--color-positive);
-  --ion-color-danger: var(--color-negative);
+  --ion-color-success-contrast: #fff;
+
   --ion-background-color: var(--color-surface);
   --ion-text-color: var(--color-text);
+
+  --ion-toolbar-background: var(--color-bg);
+  --ion-tab-bar-background: var(--color-bg);
+  --ion-border-color: var(--color-border);
 }

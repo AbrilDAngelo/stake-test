@@ -1,24 +1,68 @@
 <ion-content fullscreen>
   <section class="page-pad">
-    <ion-searchbar
-      ngSkipHydration
-      class="st-search"
-      placeholder="Search"
-      mode="ios"
-      (ionInput)="q.set($event.detail.value || '')"
-    ></ion-searchbar>
+    <span style="display: flex; align-items: center">
+      <ion-searchbar
+        #searchbar
+        class="st-search"
+        placeholder="Search"
+        mode="ios"
+        (ionInput)="q.set($event.detail.value || '')"
+      >
+      </ion-searchbar>
+      @if (q()) {
+      <span class="text-b2 cancel" (click)="clearSearch()">Cancel</span>
+      }
+    </span>
 
-    <ion-list lines="none" style="margin-top: 12px">
-      @for (i of filtered; track i.symbol) {
-      <st-instrument [vm]="i" variant="row"></st-instrument>
+    <ion-list lines="none" class="discover-list">
+      @for (i of filtered(); track i.symbol) {
+      <st-instrument
+        [vm]="i"
+        variant="row-simple"
+        (buy)="openOrder(i)"
+      ></st-instrument>
       }
     </ion-list>
 
     @if (!q()) {
-    <st-card [hasHeader]="true" style="margin-top: 16px">
-      <div slot="header" class="h3">Most traded of all time</div>
-      <st-instrument [vm]="filtered[0]" variant="tile"></st-instrument>
+    <div slot="header" class="h3">Most traded of all time</div>
+    @for (t of featured(); track t.symbol) {
+    <st-card
+      [vm]="t"
+      variant="full"
+      [hasHeader]="true"
+      style="margin-bottom: 16px"
+      (buy)="openOrder(t)"
+    >
+      <div class="featured-tile">
+        <img class="logo" [src]="t.logoUrl" alt="" />
+
+        <st-type-chip class="type-chip" [type]="t.type"></st-type-chip>
+
+        <div class="price h4">
+          {{ t.last | currency:t.currency:'symbol':'1.0-2' }}
+        </div>
+
+        <div class="sub text-b3">{{ t.symbol }} • {{ t.name }}</div>
+
+        <div class="divider"></div>
+
+        <div class="metrics-row">
+          <div class="metric">
+            <img src="assets/icons/icn-market-cap.svg" alt="" />
+            <span>${{ t.marketCapMillions | number:'1.0-1' }}m</span>
+          </div>
+          <div class="metric">
+            <img src="assets/icons/icn-trading-volume.svg" alt="" />
+            <span>${{ t.revenueBillions | number:'1.0-1' }}b</span>
+          </div>
+          <div class="metric">
+            <img src="assets/icons/icn-price-range.svg" alt="" />
+            <span>${{ t.priceRange }}</span>
+          </div>
+        </div>
+      </div>
     </st-card>
-    }
+    } }
   </section>
 </ion-content>

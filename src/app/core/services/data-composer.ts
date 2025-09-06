@@ -1,32 +1,33 @@
-import { Injectable, signal } from '@angular/core';
+import { computed, Injectable, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { InstrumentVM } from './models';
 
 @Injectable({ providedIn: 'root' })
 export class DataComposerService {
   instruments = signal<InstrumentVM[]>([]);
+  featuredInstruments = computed(() =>
+    this.instruments().filter((x) => x.featured)
+  );
+
+  constructor(private http: HttpClient) {}
 
   load() {
-    setTimeout(() => {
-      this.instruments.set([
-        {
-          symbol: 'FIG',
-          name: 'Figma Inc',
-          last: 131.04,
-          dayChangePct: 0.229,
-          type: 'Stock',
-          logoUrl: 'assets/icons/figma.svg',
-          currency: 'USD',
-        },
-        {
-          symbol: 'ABNB',
-          name: 'Airbnb Pty Ltd',
-          last: 125.03,
-          dayChangePct: -0.031,
-          type: 'Stock',
-          logoUrl: 'assets/icons/airbnb.svg',
-          currency: 'USD',
-        },
-      ]);
-    }, 300);
+    this.http.get<any>('assets/db.json').subscribe((data) => {
+      const merged = data.instruments.map((inst: any) => {
+        const q = data.quotes.find((x: any) => x.symbol === inst.symbol);
+        const h = data.holdings.find((x: any) => x.symbol === inst.symbol);
+
+        return {
+          ...inst,
+          last: q?.last ?? 0,
+          dayChangePct: q?.dayChangePct ?? 0,
+          currency: q?.currency ?? 'USD',
+          qty: h?.qty ?? 0,
+          avgPrice: h?.avgPrice ?? undefined,
+        } as InstrumentVM;
+      });
+
+      this.instruments.set(merged);
+    });
   }
 }

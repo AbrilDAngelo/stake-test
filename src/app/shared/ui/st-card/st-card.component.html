@@ -1,11 +1,19 @@
-<article class="card" [ngClass]="variant">
-  @if(hasHeader) {
+<article
+  (click)="buy.emit(vm)"
+  class="card"
+  [class.full]="variant === 'full'"
+  [class.mini]="variant === 'mini'"
+  [class.tile]="variant === 'tile'"
+>
+  @if (hasHeader) {
   <header>
     <ng-content select="[slot=header]"></ng-content>
   </header>
   }
+
   <ng-content></ng-content>
-  @if(hasFooter) {
+
+  @if (hasFooter) {
   <footer>
     <ng-content select="[slot=footer]"></ng-content>
   </footer>

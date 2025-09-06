@@ -4,8 +4,7 @@
 
 .chip {
   @include m.chip;
-  /* was: @extend .tag-type; */
-  @include m.text-var('tag');   /* uses --tag-size/--tag-lh/--tag-w/--tag-track */
+  @include m.text-var('tag');
 
   border: 1px solid var(--color-text);
   color: var(--color-text);

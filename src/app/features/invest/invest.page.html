@@ -7,11 +7,7 @@
     <div class="h3" style="margin-top: 16px">Holdings</div>
     <ion-list lines="none">
       @for (i of holdings(); track i.symbol) {
-      <st-instrument
-        [vm]="i"
-        variant="row"
-        (buy)="openOrder(i)"
-      ></st-instrument>
+      <st-instrument [vm]="i" variant="row"></st-instrument>
       }
     </ion-list>
 

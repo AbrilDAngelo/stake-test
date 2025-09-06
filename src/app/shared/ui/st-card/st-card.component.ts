@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { InstrumentVM } from '@core/services/models';
 import { IonicModule } from '@ionic/angular';
 
 @Component({
@@ -14,4 +14,6 @@ export class StCardComponent {
   @Input() variant: 'full' | 'mini' | 'tile' = 'full';
   @Input() hasHeader = false;
   @Input() hasFooter = false;
+  @Input({ required: true }) vm!: InstrumentVM;
+  @Output() buy = new EventEmitter<InstrumentVM>();
 }

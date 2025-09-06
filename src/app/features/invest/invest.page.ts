@@ -31,6 +31,7 @@ export class InvestPage {
 
   async openOrder(vm: InstrumentVM) {
     const presenting = document.getElementById('main') as HTMLElement | null;
+
     const m = await this.modal.create({
       component: StOrderSheetComponent,
       componentProps: { vm },
@@ -41,20 +42,18 @@ export class InvestPage {
       presentingElement: presenting ?? undefined,
     });
 
-    m.onWillDismiss().then(async (ev: any) => {
-      console.log('MODAL SHOULD BE SEEN');
-      if (ev?.data?.completed) {
-        const t = await this.toast.create({
-          message: `${vm.name ?? vm.symbol} successfully purchased`,
-          duration: 1600,
-          color: 'success',
-          position: 'top',
-          mode: 'ios',
-        });
-        t.present();
-      }
-    });
-
     await m.present();
+
+    const { data } = await m.onWillDismiss();
+    if (data?.completed) {
+      const t = await this.toast.create({
+        message: `${vm.name ?? vm.symbol} successfully purchased`,
+        duration: 1600,
+        color: 'success',
+        position: 'top',
+        mode: 'ios'
+      });
+      t.present();
+    }
   }
 }

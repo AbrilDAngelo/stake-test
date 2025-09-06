@@ -1,7 +1,7 @@
 <section class="sheet">
-  <div class="h3">{{ vm.symbol }} {{ vm.last | currency:(vm.currency ?? 'USD') }}</div>
+  <div class="h3">{{ vm.symbol }} {{ vm.last | currency : vm.currency }}</div>
 
-  <ion-list lines="full">
+  <ion-list lines="full" [formGroup]="form">
     <ion-item>
       <ion-label position="stacked">Price</ion-label>
       <ion-select formControlName="type" value="Market">
@@ -22,5 +22,7 @@
   </ion-list>
 
   <!-- placeholder until swipe button is added -->
-  <ion-button expand="block" shape="round" color="dark" (click)="submit()">Swipe to buy</ion-button>
+  <ion-button expand="block" shape="round" color="dark" (click)="submit()"
+    >Swipe to buy</ion-button
+  >
 </section>

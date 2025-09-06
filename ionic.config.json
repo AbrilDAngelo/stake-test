@@ -1,0 +1,7 @@
+{
+  "name": "stake-assessment",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

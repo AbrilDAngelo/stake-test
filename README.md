@@ -69,7 +69,37 @@ This simplified layout: most text styles were applied via predefined classes.
 
 ---
 
-## Pending Improvements
+## Pending Work & Approach
+
+Due to the 4h time cap, I didn’t implement the **automatic addition of the recently purchased stock with animation** (as shown in the reference video).
+
+**How I would handle this:**
+- **For the challenge (quick approach):** Use Angular signals to update the UI state immediately when the BUY flow completes.
+- **For production (scalable approach):** Dispatch an NgRx action on purchase success.  
+  - The effect would update the store with the new holding.  
+  - Selectors would provide the updated holdings to the home view.  
+  - This ensures consistency across the app and instant reflection of the new data.
+
+**Animation of recently added item:**
+- I would trigger a CSS animation on the newly inserted card (e.g. `@keyframes fadeInUp` with transform + opacity).  
+- One way is to apply a `*ngFor` `trackBy` and detect the newly added item, giving it a temporary “highlight” class (glow, bounce, slide-in) that auto-removes after animation completes.  
+- Alternative: use Angular’s `@angular/animations` with `transition(':enter', [...])` to animate list insertions.
+
+**Top-down notification animation:**
+- The Figma video shows a banner/toast sliding from the top.  
+- Ionic’s [`ToastController`](https://ionicframework.com/docs/api/toast) supports `position: 'top'`.  
+- With `enterAnimation` you can override defaults and have it slide down from above.  
+- Example:  
+
+```ts
+this.toastController.create({
+  message: 'Stock added successfully',
+  duration: 2000,
+  position: 'top',
+  cssClass: 'custom-toast' // style with transform/animation
+}).then(toast => toast.present());
+
+## Other Pending Improvements
 - 🔸 **Card swiper**: Currently implemented with SCSS scroll snapping. With more time, it should use **Swiper.js** for smoother interaction and pagination.
 - 🔸 **Buy button**: Swipe animation works but could be improved with a custom gesture or a library like `ngx-slide-to-act`.
 - 🔸 **Models**: Data models could use foreign keys for cleaner joins between instruments, quotes, and holdings.
@@ -79,6 +109,8 @@ This simplified layout: most text styles were applied via predefined classes.
 - 🔸 **Spacing**: Some paddings/margins are hardcoded. Ideally, all layout spacing should reference tokens.
 - 🔸 **Accessibility**: ARIA attributes and keyboard navigation need improvements.
 - 🔸 **Styling consistency**: Some colors are hardcoded; should be fully tokenized. The toast should have the right opacity. The cards should follow the max-width defined on Figma. I couldn't download the exact font and went for a similar one that I found on Google Fonts (Inter).
+- 🔸 **Centralised error handling**: Should be managed via a global error service and HTTP interceptor, surfacing user-friendly messages through a shared toast. 
+- 🔸 **Separate services for API calls or delegation to NgRx effects**: Right now all data is fetched through a single DataComposer. A cleaner approach would split it into dedicated services (Instruments, Quotes, Holdings), with the composer/facade combining them for UI. In a production setup I’d move this orchestration into NgRx (actions/effects/selectors) for scalability and instant cross-screen updates.
 
 ---
 
@@ -96,5 +128,6 @@ npm install
 ```bash
 ionic serve
 ```
+
 
 

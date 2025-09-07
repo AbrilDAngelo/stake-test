@@ -82,7 +82,7 @@ Due to the 4h time cap, I didn’t implement the **automatic addition of the rec
 
 **Animation of recently added item:**
 - I would trigger a CSS animation on the newly inserted card (e.g. `@keyframes fadeInUp` with transform + opacity).  
-- One way is to apply a `*ngFor` `trackBy` and detect the newly added item, giving it a temporary “highlight” class (glow, bounce, slide-in) that auto-removes after animation completes.  
+- One way is to use the @for block with track item.id, detect the newly added item, and apply a temporary highlight class (glow, bounce, slide-in) that auto-removes after the animation completes
 - Alternative: use Angular’s `@angular/animations` with `transition(':enter', [...])` to animate list insertions.
 
 **Top-down notification animation:**
@@ -128,6 +128,7 @@ npm install
 ```bash
 ionic serve
 ```
+
 
 
 

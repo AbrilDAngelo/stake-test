@@ -98,6 +98,7 @@ this.toastController.create({
   position: 'top',
   cssClass: 'custom-toast' // style with transform/animation
 }).then(toast => toast.present());
+```
 
 ## Other Pending Improvements
 - 🔸 **Card swiper**: Currently implemented with SCSS scroll snapping. With more time, it should use **Swiper.js** for smoother interaction and pagination.
@@ -128,6 +129,7 @@ npm install
 ```bash
 ionic serve
 ```
+
 
 
 

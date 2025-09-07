@@ -9,14 +9,15 @@
   />
   <div class="meta">
     <div class="name text-b2">{{ vm.symbol }}</div>
-    <div class="shares text-b3">{{ vm.name }}</div>
+    <div class="shares text-b3">{{ vm.qty }} shares</div>
   </div>
   <div class="spacer"></div>
   <div class="price text-b5">
     {{ vm.last | currency : vm.currency : "symbol" : "1.2-2" }}
   </div>
   <span class="badge-change" [class.negative]="vm.dayChangePct < 0">
-    {{ vm.dayChangePct | percent : "1.0-2" }}
+    {{ vm.dayChangePct > 0 ? "+" : ""
+    }}{{ vm.dayChangePct | percent : "1.0-2" }}
   </span>
 </div>
 } @case ('row-simple') {

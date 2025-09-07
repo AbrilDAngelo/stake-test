@@ -40,7 +40,7 @@ export class DiscoverPage implements OnInit {
 
   q = signal('');
   items = computed(() => this.dataComposer.instruments());
-  featured = this.dataComposer.instruments;
+  featured = this.dataComposer.featured;
 
   @ViewChild(IonSearchbar) searchbar!: IonSearchbar;
 

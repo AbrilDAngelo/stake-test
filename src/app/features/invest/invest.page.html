@@ -4,7 +4,13 @@
     <div class="label-l3">Total equity</div>
     <div class="h1">{{ totalEquity() | currency:'USD' }}</div>
 
-    <div class="h3" class="holdings-title">Holdings</div>
+    <div class="h3 holdings-title">Holdings</div>
+    <div class="row headers text-b4">
+      <div class="meta">Stock</div>
+      <div class="spacer"></div>
+      <div class="price">Price</div>
+      <div class="change">Change</div>
+    </div>
     <ion-list lines="none">
       @for (i of holdings(); track i.symbol) {
       <st-instrument

@@ -1,12 +1,6 @@
 # Stake Assessment – Ionic + Angular App
 
-This project was developed as a rapid prototype using **Ionic + Angular**.  
-You can run it locally with:
-
-```bash
-npm install
-ionic serve
-```
+This project was developed as a prototype using **Ionic + Angular**.  
 
 ## Preface
 (see tags: **v1** contains all work completed within the 4h timeframe; **v2** adds the animation for the recently purchased stock).
@@ -76,10 +70,9 @@ This simplified layout: most text styles were applied via predefined classes.
 - 🔸 **Buy button**: Swipe animation works but could be improved with a custom gesture or a library.
 - 🔸 **Modals**: Should support dismissal on backdrop tap.
 - 🔸 **Searchbar**: Would implement API-backed search.
-- 🔸 **Testing**: No tests included; Jest would be the natural choice for unit tests.
 - 🔸 **Accessibility**: ARIA attributes and keyboard navigation need improvements.
-- 🔸 **Clickable elements**: Add distinct hover/focus styles for buttons, cards, and links to improve usability and accessibility.  
-- 🔸 **Styling consistency**: I couldn't download the exact font and went for a similar one that I found on Google Fonts (Inter). The styles should match the Figma with a higher precision.
+- 🔸 **Most traded card formatting**: I would create a custom pipe to format numbers and display them as `k`, `m`, or `b` depending on the value. Currently, it only shows `b`, but some values are too low—displaying millions (and thousands) would improve clarity.
+- 🔸 **Clickable elements**: Add distinct hover/focus styles for buttons, cards, and links to improve usability and accessibility. Typography should be used consistently; on a refactor, I would remove all hardcoded styles and rely solely on the defined themeshould match the Figma with a higher precision.
 - 🔸 **Centralised error handling**: Should be managed via a global error service and HTTP interceptor, surfacing user-friendly messages through a shared toast. 
 - 🔸 **Separate services for API calls or delegation to NgRx effects**: Right now all data is fetched through a single DataComposer. A cleaner approach would split it into dedicated services, with the composer/facade combining them for UI. In a production setup I’d move this orchestration into NgRx (actions/effects/selectors) for scalability and instant cross-screen updates.
 

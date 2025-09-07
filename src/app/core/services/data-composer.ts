@@ -12,6 +12,7 @@ import { firstValueFrom } from 'rxjs';
 export class DataComposerService {
   instruments = signal<InstrumentVM[]>([]);
   holdings = computed(() => this.instruments().filter((x) => (x.qty ?? 0) > 0));
+  featured = computed(() => this.instruments().filter((x) => x.low));
   totalEquity = signal<number>(0);
   cashBalance = signal<number>(0);
   baseCurrency = signal<string>('USD');
@@ -64,6 +65,11 @@ export class DataComposerService {
         avgPrice: ps?.averageCost,
         volume: dt?.volume,
         marketCap: dt?.marketCap,
+        low: pr?.low,
+        high: pr?.high,
+        open: open,
+        close: pr?.close,
+        ask: pr?.ask,
       };
 
       if (vm.qty && vm.last) vm.marketValue = vm.qty * vm.last;
@@ -123,5 +129,6 @@ export class DataComposerService {
     } else {
       const added: InstrumentVM = { ...vm, qty, avgPrice: totalPaid / qty };
       this.instruments.set([added, ...list]);
-    }  }
+    }
+  }
 }

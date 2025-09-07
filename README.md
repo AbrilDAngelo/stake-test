@@ -109,6 +109,7 @@ this.toastController.create({
 - 🔸 **Testing**: No tests included; Jest would be the natural choice for unit tests.
 - 🔸 **Spacing**: Some paddings/margins are hardcoded. Ideally, all layout spacing should reference tokens.
 - 🔸 **Accessibility**: ARIA attributes and keyboard navigation need improvements.
+- 🔸 **Clickable elements**: Add distinct hover/focus styles for buttons, cards, and links to improve usability and accessibility.  
 - 🔸 **Styling consistency**: Some colors are hardcoded; should be fully tokenized. The toast should have the right opacity. The cards should follow the max-width defined on Figma. I couldn't download the exact font and went for a similar one that I found on Google Fonts (Inter).
 - 🔸 **Centralised error handling**: Should be managed via a global error service and HTTP interceptor, surfacing user-friendly messages through a shared toast. 
 - 🔸 **Separate services for API calls or delegation to NgRx effects**: Right now all data is fetched through a single DataComposer. A cleaner approach would split it into dedicated services (Instruments, Quotes, Holdings), with the composer/facade combining them for UI. In a production setup I’d move this orchestration into NgRx (actions/effects/selectors) for scalability and instant cross-screen updates.
@@ -129,6 +130,7 @@ npm install
 ```bash
 ionic serve
 ```
+
 
 
 

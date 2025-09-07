@@ -71,7 +71,7 @@ This simplified layout: most text styles were applied via predefined classes.
 
 ## Pending Work & Approach
 
-Due to the 4h time cap, I didn’t implement the **automatic addition of the recently purchased stock with animation** (as shown in the reference video).
+Due to the 4h time cap, I didn’t implement the **automatic addition of the recently purchased stock with animation** (as shown in the Figma prototype).
 
 **How I would handle this:**
 - **For the challenge (quick approach):** Use Angular signals to update the UI state immediately when the BUY flow completes.
@@ -128,6 +128,7 @@ npm install
 ```bash
 ionic serve
 ```
+
 
 
 

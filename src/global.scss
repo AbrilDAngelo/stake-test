@@ -61,7 +61,10 @@ ion-tabs .tabs-inner {
   font-size: 14px;
 }
 
-
 .modal-sheet {
-    background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.st-modal .modal-wrapper {
+  --height: auto;
 }

@@ -1,20 +1,27 @@
-@use '../../../../styles/mixins' as m;
+@use "../../../../styles/mixins" as m;
 
-:host { display: inline-block; }
+:host {
+  display: inline-block;
+}
 
 .chip {
   @include m.chip;
-  @include m.text-var('tag');
+  @include m.text-var("tag");
 
   border: 1px solid var(--color-text);
   color: var(--color-text);
   background: #fff;
   height: 18px;
-  border-radius: 16px;
-  padding-inline: 6px;
+  border-radius: var(--radius-lg);
+  padding-inline: var(--space-2);
 }
 
-.chip.blue {
+.chip-etf {
   border-color: var(--color-highlight-blue);
   color: var(--color-highlight-blue);
+}
+
+.chip-otc {
+  border-color: var(--color-highlight-red);
+  color: var(--color-highlight-red);
 }

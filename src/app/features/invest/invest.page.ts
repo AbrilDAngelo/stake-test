@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, signal, computed } from '@angular/core';
+import { Component, computed, inject, OnInit } from '@angular/core';
+import { InstrumentVM } from '@core/models/models';
 import { DataComposerService } from '@core/services/data-composer';
-import { InstrumentVM } from '@core/services/models';
 import { IonicModule, ModalController, ToastController } from '@ionic/angular';
 import { StInstrumentComponent } from '@shared/ui/st-instrument/st-instrument.component';
 import { StOrderSheetComponent } from '@shared/ui/st-order-sheet/st-order-sheet.component';
@@ -13,20 +13,17 @@ import { StOrderSheetComponent } from '@shared/ui/st-order-sheet/st-order-sheet.
   templateUrl: './invest.page.html',
   styleUrls: ['./invest.page.scss'],
 })
-export class InvestPage {
-  selected = signal<InstrumentVM | null>(null);
-
+export class InvestPage implements OnInit {
+  private data = inject(DataComposerService);
   private modal = inject(ModalController);
   private toast = inject(ToastController);
-  private dataComposer = inject(DataComposerService);
 
-  holdings = computed(() =>
-    this.dataComposer.instruments().filter((i) => (i.qty ?? 0) > 0)
-  );
-  trending = computed(() => this.dataComposer.instruments());
+  totalEquity = this.data.totalEquity;
+  holdings = computed(() => this.data.getHoldings());
+  trending = computed(() => this.data.getTrending(6));
 
-  constructor() {
-    this.dataComposer.load();
+  async ngOnInit() {
+    await this.data.load();
   }
 
   async openOrder(vm: InstrumentVM) {
@@ -39,6 +36,7 @@ export class InvestPage {
       initialBreakpoint: 0.45,
       handle: true,
       mode: 'ios',
+      cssClass: 'st-modal',
       backdropDismiss: true,
       showBackdrop: true,
       presentingElement: presenting ?? undefined,

@@ -1,8 +1,8 @@
 import { CurrencyPipe } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ModalController, IonicModule } from '@ionic/angular';
-import { InstrumentVM } from '@core/services/models';
+import { InstrumentVM } from '@core/models/models';
+import { IonicModule, ModalController } from '@ionic/angular';
 import { SwipeButtonComponent } from '@shared/ui/st-swipe-button/st-swipe-button.component';
 
 @Component({

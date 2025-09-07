@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { InstrumentVM } from '@core/services/models';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { InstrumentVM } from '@core/models/models';
 import { IonicModule } from '@ionic/angular';
 
 @Component({

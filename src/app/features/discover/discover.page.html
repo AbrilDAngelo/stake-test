@@ -50,15 +50,19 @@
         <div class="metrics-row">
           <div class="metric">
             <img src="assets/icons/icn-market-cap.svg" alt="" />
-            <span>${{ t.marketCapMillions | number:'1.0-1' }}m</span>
+            <span>${{ (t.marketCap || 0) / 1_000_000 | number:'1.0-1' }}m</span>
           </div>
+
           <div class="metric">
             <img src="assets/icons/icn-trading-volume.svg" alt="" />
-            <span>${{ t.revenueBillions | number:'1.0-1' }}b</span>
+            <span
+              >${{ (t.volume || 0) / 1_000_000_000 | number:'1.0-1' }}b</span
+            >
           </div>
+
           <div class="metric">
             <img src="assets/icons/icn-price-range.svg" alt="" />
-            <span>${{ t.priceRange }}</span>
+            <span>{{ t.low }} - {{ t.high }}</span>
           </div>
         </div>
       </div>

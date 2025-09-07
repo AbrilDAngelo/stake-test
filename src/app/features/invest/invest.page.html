@@ -2,9 +2,9 @@
   <section class="page-pad">
     <div class="h2">Dashboard</div>
     <div class="label-l3">Total equity</div>
-    <div class="h1">$8,036</div>
+    <div class="h1">{{ totalEquity() | currency:'USD' }}</div>
 
-    <div class="h3" style="margin-top: 16px">Holdings</div>
+    <div class="h3" class="holdings-title">Holdings</div>
     <ion-list lines="none">
       @for (i of holdings(); track i.symbol) {
       <st-instrument [vm]="i" variant="row"></st-instrument>

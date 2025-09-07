@@ -4,7 +4,7 @@
   max-width: 350px;
   height: 50px;
   background: #111;
-  border-radius: 25px;
+  border-radius: var(--radius-xl);
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,29 +1,33 @@
 .invest .mt-8 {
-  margin-top: 8px;
+  margin-top: var(--space-2);
 }
 .invest .mt-16 {
-  margin-top: 16px;
+  margin-top: var(--space-4);
 }
 
 .holdings-head {
   display: grid;
   grid-template-columns: 1fr 90px 92px; /* name | price | change */
   align-items: center;
-  margin: 8px 0 4px;
+  margin: var(--space-2) 0 var(--space-1);
   color: var(--color-text-muted);
 }
 
 .holdings-list {
-  padding-top: 4px;
+  padding-top: var(--space-1);
+}
+
+.holdings-title {
+  margin-top: var(--space-4);
 }
 
 .snap-row {
   display: grid;
   grid-auto-flow: column;
   grid-auto-columns: 200px;
-  gap: 12px;
+  gap: var(--space-3);
   overflow-x: auto;
-  padding-block: 4px;
+  padding-block: var(--space-1);
   scroll-snap-type: x mandatory;
 }
 .snap-row > * {
@@ -32,19 +36,19 @@
 
 .h2,
 .h3 {
-  margin-top: 32px;
+  margin-top: var(--space-6);
 }
 
 .h2,
 .h1 {
-  margin-bottom: 32px;
+  margin-bottom: var(--space-6);
 }
 
 .h1,
 .label-l3 {
-  margin-top: 16px;
+  margin-top: var(--space-4);
 }
 
 .h3 {
-  margin-bottom: 16px;
+  margin-bottom: var(--space-4);
 }

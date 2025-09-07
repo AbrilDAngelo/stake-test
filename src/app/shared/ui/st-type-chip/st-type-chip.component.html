@@ -1,1 +1,8 @@
-<span class="chip" [class.blue]="type==='ETF'">{{ type }}</span>
+<span
+  class="chip"
+  [class.chip-etf]="type === 'etf'"
+  [class.chip-stock]="type === 'stock'"
+  [class.chip-otc]="type === 'otc'"
+>
+  {{ type | uppercase }}
+</span>

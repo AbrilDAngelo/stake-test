@@ -1,33 +1,102 @@
-import { computed, Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { InstrumentVM } from './models';
+import { Injectable, signal } from '@angular/core';
+import {
+  DetailsModel,
+  InstrumentVM,
+  PositionsModel,
+  PricingModel,
+} from '@core/models/models';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class DataComposerService {
   instruments = signal<InstrumentVM[]>([]);
-  featuredInstruments = computed(() =>
-    this.instruments().filter((x) => x.featured)
-  );
+  totalEquity = signal<number>(0);
+  cashBalance = signal<number>(0);
+  baseCurrency = signal<string>('USD');
 
   constructor(private http: HttpClient) {}
 
-  load() {
-    this.http.get<any>('assets/db.json').subscribe((data) => {
-      const merged = data.instruments.map((inst: any) => {
-        const q = data.quotes.find((x: any) => x.symbol === inst.symbol);
-        const h = data.holdings.find((x: any) => x.symbol === inst.symbol);
+  async load() {
+    const [pricing, details, positions] = await Promise.all([
+      firstValueFrom(this.http.get<PricingModel[]>('assets/data/pricing.json')),
+      firstValueFrom(this.http.get<DetailsModel[]>('assets/data/details.json')),
+      firstValueFrom(
+        this.http.get<PositionsModel>('assets/data/positions.json')
+      ),
+    ]);
 
-        return {
-          ...inst,
-          last: q?.last ?? 0,
-          dayChangePct: q?.dayChangePct ?? 0,
-          currency: q?.currency ?? 'USD',
-          qty: h?.qty ?? 0,
-          avgPrice: h?.avgPrice ?? undefined,
-        } as InstrumentVM;
-      });
+    this.cashBalance.set(positions.cashBalance);
+    this.baseCurrency.set(positions.baseCurrency);
 
-      this.instruments.set(merged);
+    const pMap = new Map(pricing.map((p) => [p.symbol, p]));
+    const dMap = new Map(details.map((d) => [d.symbol, d]));
+    const posMap = new Map(positions.positions.map((p) => [p.symbol, p]));
+
+    const symbols = new Set<string>([
+      ...pricing.map((p) => p.symbol),
+      ...details.map((d) => d.symbol),
+      ...positions.positions.map((p) => p.symbol),
+    ]);
+
+    const vms: InstrumentVM[] = [];
+
+    symbols.forEach((symbol) => {
+      const pr = pMap.get(symbol);
+      const dt = dMap.get(symbol);
+      const ps = posMap.get(symbol);
+
+      const last = pr?.close ?? pr?.ask ?? 0;
+      const open = pr?.open ?? 0;
+
+      const dayChangePct = open > 0 ? (last - open) / open : 0;
+
+      const vm: InstrumentVM = {
+        symbol,
+        name: dt?.fullName ?? symbol,
+        type: dt?.type ?? 'stock',
+        logoUrl: dt?.logo ?? '',
+        last,
+        dayChangePct,
+        currency: ps?.currency ?? 'USD',
+        qty: ps?.quantity,
+        avgPrice: ps?.averageCost,
+        volume: dt?.volume,
+        marketCap: dt?.marketCap,
+      };
+
+      if (vm.qty && vm.last) vm.marketValue = vm.qty * vm.last;
+
+      vms.push(vm);
     });
+
+    // Sort for "Holdings" presentation (largest first)
+    vms.sort((a, b) => (b.marketValue ?? 0) - (a.marketValue ?? 0));
+    this.instruments.set(vms);
+
+    // Total equity: sum(qty * last) + cash
+    const positionsValue = vms.reduce((s, x) => s + (x.marketValue ?? 0), 0);
+    this.totalEquity.set(positionsValue + this.cashBalance());
   }
+
+  getHoldings = () => this.instruments().filter((x) => (x.qty ?? 0) > 0);
+
+  // Trending stocks: volume descending
+  getTrending = (limit = 10) =>
+    [...this.instruments()]
+      .filter((x) => (x.volume ?? 0) > 0)
+      .sort(
+        (a, b) =>
+          (b.volume ?? 0) - (a.volume ?? 0) ||
+          (b.marketCap ?? 0) - (a.marketCap ?? 0)
+      )
+      .slice(0, limit);
+
+  // Most traded of all time: highest marketCap (or fallback to volume)
+  getMostTraded = () =>
+    [...this.instruments()].sort(
+      (a, b) =>
+        (b.marketCap ?? 0) - (a.marketCap ?? 0) ||
+        (b.volume ?? 0) - (a.volume ?? 0)
+    )[0];
 }

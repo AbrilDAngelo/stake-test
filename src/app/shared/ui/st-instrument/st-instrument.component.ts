@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
-import { InstrumentVM } from '@core/services/models';
 import { CommonModule, CurrencyPipe, PercentPipe } from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { InstrumentVM } from '@core/models/models';
+import { IonicModule } from '@ionic/angular';
 import { StTypeChipComponent } from '../st-type-chip/st-type-chip.component';
 
 @Component({

@@ -1,24 +1,24 @@
 import { CommonModule } from '@angular/common';
 import {
   Component,
-  OnInit,
-  inject,
-  signal,
   computed,
+  inject,
+  OnInit,
+  signal,
   ViewChild,
 } from '@angular/core';
-import { InstrumentVM } from '@core/services/models';
+import { InstrumentVM } from '@core/models/models';
+import { DataComposerService } from '@core/services/data-composer';
 import {
   IonicModule,
+  IonSearchbar,
   ModalController,
   ToastController,
-  IonSearchbar,
 } from '@ionic/angular';
 import { StCardComponent } from '@shared/ui/st-card/st-card.component';
 import { StInstrumentComponent } from '@shared/ui/st-instrument/st-instrument.component';
-import { DataComposerService } from '@core/services/data-composer';
-import { StTypeChipComponent } from '@shared/ui/st-type-chip/st-type-chip.component';
 import { StOrderSheetComponent } from '@shared/ui/st-order-sheet/st-order-sheet.component';
+import { StTypeChipComponent } from '@shared/ui/st-type-chip/st-type-chip.component';
 
 @Component({
   standalone: true,
@@ -40,7 +40,7 @@ export class DiscoverPage implements OnInit {
 
   q = signal('');
   items = computed(() => this.dataComposer.instruments());
-  featured = this.dataComposer.featuredInstruments;
+  featured = this.dataComposer.instruments;
 
   @ViewChild(IonSearchbar) searchbar!: IonSearchbar;
 
@@ -66,6 +66,7 @@ export class DiscoverPage implements OnInit {
       handle: true,
       mode: 'ios',
       backdropDismiss: true,
+      cssClass: 'st-modal',
       showBackdrop: true,
       presentingElement: presenting ?? undefined,
     });

@@ -1,0 +1,14 @@
+{
+  "accountId": "demo-001",
+  "baseCurrency": "USD",
+  "cashBalance": 1200.0,
+  "positions": [
+    {
+      "symbol": "AAPL",
+      "quantity": 15,
+      "averageCost": 180.0,
+      "currency": "USD"
+    },
+    { "symbol": "TSLA", "quantity": 5, "averageCost": 250.0, "currency": "USD" }
+  ]
+}

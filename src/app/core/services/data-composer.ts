@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, signal } from '@angular/core';
+import { computed, Injectable, signal } from '@angular/core';
 import {
   DetailsModel,
   InstrumentVM,
@@ -11,6 +11,7 @@ import { firstValueFrom } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class DataComposerService {
   instruments = signal<InstrumentVM[]>([]);
+  holdings = computed(() => this.instruments().filter((x) => (x.qty ?? 0) > 0));
   totalEquity = signal<number>(0);
   cashBalance = signal<number>(0);
   baseCurrency = signal<string>('USD');
@@ -79,8 +80,6 @@ export class DataComposerService {
     this.totalEquity.set(positionsValue + this.cashBalance());
   }
 
-  getHoldings = () => this.instruments().filter((x) => (x.qty ?? 0) > 0);
-
   // Trending stocks: volume descending
   getTrending = (limit = 10) =>
     [...this.instruments()]
@@ -99,4 +98,30 @@ export class DataComposerService {
         (b.marketCap ?? 0) - (a.marketCap ?? 0) ||
         (b.volume ?? 0) - (a.volume ?? 0)
     )[0];
+
+  addPurchase(vm: InstrumentVM, qty: number, totalPaid: number) {
+    if (!qty || qty <= 0) return;
+    const list = this.instruments();
+    const idx = list.findIndex((x) => x.symbol === vm.symbol);
+
+    if (idx >= 0) {
+      const cur = list[idx];
+      const newQty = (cur.qty ?? 0) + qty;
+      const newTotalPaid = (cur.avgPrice ?? 0) * (cur.qty ?? 0) + totalPaid;
+      const newAvg = newTotalPaid / newQty;
+
+      const updated: InstrumentVM = {
+        ...cur,
+        qty: newQty,
+        avgPrice: newAvg,
+        last: vm.last,
+        dayChangePct: vm.dayChangePct,
+      };
+      const next = [...list];
+      next[idx] = updated;
+      this.instruments.set(next);
+    } else {
+      const added: InstrumentVM = { ...vm, qty, avgPrice: totalPaid / qty };
+      this.instruments.set([added, ...list]);
+    }  }
 }

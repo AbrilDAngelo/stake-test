@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { InstrumentVM } from '@core/models/models';
 import { DataComposerService } from '@core/services/data-composer';
 import { IonicModule, ModalController, ToastController } from '@ionic/angular';
@@ -19,8 +19,9 @@ export class InvestPage implements OnInit {
   private toast = inject(ToastController);
 
   totalEquity = this.data.totalEquity;
-  holdings = computed(() => this.data.getHoldings());
+  holdings = this.data.holdings;
   trending = computed(() => this.data.getTrending(6));
+  justAdded = signal<string | null>(null);
 
   async ngOnInit() {
     await this.data.load();
@@ -46,12 +47,23 @@ export class InvestPage implements OnInit {
 
     const { data } = await m.onWillDismiss();
     if (data?.completed) {
+      // update holdings
+      const qty = Number(data.qty) || 0;
+      const totalPaid = Number(data.price) || 0;
+      this.data.addPurchase(vm, qty, totalPaid);
+
+      // mark for animation
+      this.justAdded.set(vm.symbol);
+      setTimeout(() => this.justAdded.set(null), 900);
+
+      // toast
       const t = await this.toast.create({
         message: `${vm.name ?? vm.symbol} successfully purchased`,
         duration: 1600,
         color: 'success',
         position: 'top',
         mode: 'ios',
+        cssClass: 'st-toast',
       });
       t.present();
     }

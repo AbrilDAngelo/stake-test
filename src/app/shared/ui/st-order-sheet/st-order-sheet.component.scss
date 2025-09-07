@@ -5,3 +5,7 @@
 .h3 {
   margin-bottom: var(--space-4);
 }
+
+ion-select::part(icon) {
+  display: none;
+}

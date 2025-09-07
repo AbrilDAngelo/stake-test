@@ -7,7 +7,13 @@
     <div class="h3" class="holdings-title">Holdings</div>
     <ion-list lines="none">
       @for (i of holdings(); track i.symbol) {
-      <st-instrument [vm]="i" variant="row"></st-instrument>
+      <st-instrument
+        [vm]="i"
+        variant="row"
+        [class.just-added]="i.symbol === justAdded()"
+      >
+        ></st-instrument
+      >
       }
     </ion-list>
 

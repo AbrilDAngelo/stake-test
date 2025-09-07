@@ -79,6 +79,7 @@ export class DiscoverPage implements OnInit {
           color: 'success',
           position: 'top',
           mode: 'ios',
+          cssClass: 'st-toast',
         });
         t.present();
       }

@@ -57,6 +57,11 @@ ion-tabs .tabs-inner {
   position: static !important;
 }
 
+ion-toast.st-toast {
+  text-align: center;
+  color: var(--color-text);
+}
+
 .searchbar-input.sc-ion-searchbar-ios {
   font-size: 14px;
 }

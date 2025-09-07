@@ -1,85 +1,86 @@
 :host {
-    display: block
+  display: block;
 }
 
 /* Row */
 .row {
-    display: flex;
-    align-items: center;
-    gap: var(--space-3);
-    padding: var(--space-3) 0;
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
 }
 
 .logo {
-    width: var(--space-5);
-    height: var(--space-5);
-    object-fit: contain;
-    border-radius: var(--space-1);
+  width: var(--space-5);
+  height: var(--space-5);
+  object-fit: contain;
+  border-radius: var(--space-1);
 }
 
 .meta {
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .spacer {
-    flex: 1 1 auto;
+  flex: 1 1 auto;
 }
 
 .price {
-    min-width: 80px;
-    text-align: right;
-    margin-right: var(--space-2);
+  min-width: 80px;
+  text-align: right;
+  margin-right: var(--space-2);
 }
 
 .badge-change {
-    margin-right: var(--space-2);
-    background: var(--color-positive);
-    color: var(--color-on-positive);
-    padding: var(--space-1) var(--space-3);
-    border-radius: var(--space-3);
-    min-height: 26px;
+  margin-right: var(--space-2);
+  background: var(--color-positive);
+  color: var(--color-on-positive);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--space-3);
+  min-height: 26px;
 }
 
 .badge-change.negative {
-    background: #ef4444;
+  background: #ef4444;
 }
 
 .buy-btn {
-    margin-inline-start: var(--space-1);
+  margin-inline-start: var(--space-1);
 }
 
 /* Tile */
 .tile {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-2);
-    padding: var(--space-3);
-    border: 1px solid var(--color-border);
-    border-radius: var(--space-3);
-    background: #fff;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--space-3);
+  background: #fff;
 }
 
 .tile-top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .tile .logo {
-    width: var(--space-5);
-    height: var(--space-5);
+  width: var(--space-5);
+  height: var(--space-5);
 }
 
 .card-name-md {
-    @extend .card-name-md;
+  @extend .card-name-md;
 }
 
 .card-sub {
-    @extend .card-sub;
+  @extend .card-sub;
 }
 
 .card-value-md {
-    @extend .card-value-md;
+  @extend .card-value-md;
 }

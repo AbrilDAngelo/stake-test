@@ -1,3 +1,22 @@
+.h2,
+.h3 {
+  margin-top: var(--space-6);
+}
+
+.h2,
+.h1 {
+  margin-bottom: var(--space-6);
+}
+
+.h1,
+.label-l3 {
+  margin-top: var(--space-4);
+}
+
+.h3 {
+  margin-bottom: var(--space-4);
+}
+
 .invest .mt-8 {
   margin-top: var(--space-2);
 }
@@ -29,26 +48,25 @@
   overflow-x: auto;
   padding-block: var(--space-1);
   scroll-snap-type: x mandatory;
+  scrollbar-width: none;
 }
+
 .snap-row > * {
   scroll-snap-align: start;
 }
 
-.h2,
-.h3 {
-  margin-top: var(--space-6);
+.just-added {
+  animation: st-slide-down 0.45s ease-out;
+  will-change: transform, opacity;
 }
 
-.h2,
-.h1 {
-  margin-bottom: var(--space-6);
-}
-
-.h1,
-.label-l3 {
-  margin-top: var(--space-4);
-}
-
-.h3 {
-  margin-bottom: var(--space-4);
+@keyframes st-slide-down {
+  0% {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

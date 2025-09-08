@@ -72,7 +72,8 @@ This simplified layout: most text styles were applied via predefined classes.
 - 🔸 **Searchbar**: Would implement API-backed search.
 - 🔸 **Accessibility**: ARIA attributes and keyboard navigation need improvements.
 - 🔸 **Most traded card formatting**: I would create a custom pipe to format numbers and display them as `k`, `m`, or `b` depending on the value. Currently, it only shows `b`, but some values are too low—displaying millions (and thousands) would improve clarity.
-- 🔸 **Clickable elements**: Add distinct hover/focus styles for buttons, cards, and links to improve usability and accessibility. Typography should be used consistently; on a refactor, I would remove all hardcoded styles and rely solely on the defined themeshould match the Figma with a higher precision.
+- 🔸 **Clickable elements**: Add distinct hover/focus styles for buttons, cards, and links to improve usability and accessibility.
+- 🔸 **Style**: Mixins should be used consistently and implemented for all the core components. The toast should have the correct background opacity. The slider tile cards should have either a fixed width or, if implementing Swiper.js, I'd define the visible slides using the attr slidesPerView with a value of 2.5. The exact typgraphy should be used.
 - 🔸 **Centralised error handling**: Should be managed via a global error service and HTTP interceptor, surfacing user-friendly messages through a shared toast. 
 - 🔸 **Separate services for API calls or delegation to NgRx effects**: Right now all data is fetched through a single DataComposer. A cleaner approach would split it into dedicated services, with the composer/facade combining them for UI. In a production setup I’d move this orchestration into NgRx (actions/effects/selectors) for scalability and instant cross-screen updates.
 
@@ -92,6 +93,7 @@ npm install
 ```bash
 ionic serve
 ```
+
 
 
 
